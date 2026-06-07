@@ -20,17 +20,21 @@ The hosted Auripath app handles player rendering, audio delivery, lead capture, 
 
 The plugin does not store leads, audio files or analytics data in WordPress.
 
-## External service
-
-This plugin connects to the hosted Auripath service at https://app.auripath.com/.
-
-The public document ID in the shortcode is sent to Auripath so the hosted player can load the correct audio experience.
-
-Auripath privacy policy: https://auripath.com/privacy-policy/
-
 ## WordPress admin help page
 
 After activation, shortcode instructions are available in WordPress under Settings > Auripath Embed Helper.
+
+
+## External service disclosure
+
+This plugin connects to the hosted Auripath service at `https://app.auripath.com/`.
+
+When a page containing the Auripath shortcode is viewed, the plugin loads the Auripath embed script from the hosted Auripath service. The public document ID in the shortcode is passed to Auripath so the hosted service can return the correct player, lead capture form, calls to action and analytics behaviour for that document.
+
+The plugin itself does not store leads, audio files or analytics data in WordPress.
+
+Auripath privacy policy: https://auripath.com/privacy-policy/
+Auripath terms: https://auripath.com/terms/
 
 ## Shortcodes
 

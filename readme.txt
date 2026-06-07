@@ -24,6 +24,18 @@ Basic usage:
 
 The `doc` value should be the public Auripath document ID from your Auripath account.
 
+
+== External Service Disclosure ==
+
+This plugin connects to the hosted Auripath service at `https://app.auripath.com/`.
+
+When a page containing the Auripath shortcode is viewed, the plugin loads the Auripath embed script from the hosted Auripath service. The public document ID in the shortcode is passed to Auripath so the hosted service can return the correct player, lead capture form, calls to action and analytics behaviour for that document.
+
+The plugin itself does not store leads, audio files or analytics data in WordPress.
+
+Auripath privacy policy: https://auripath.com/privacy-policy/
+Auripath terms: https://auripath.com/terms/
+
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/auripath-embed-helper/`, or install the plugin zip through the WordPress admin.

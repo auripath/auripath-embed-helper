@@ -4,7 +4,7 @@ Tags: audio, embed, b2b, content, analytics
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,9 @@ Yes. The shortcode needs a public Auripath document ID, usually beginning with `
 No. This plugin only helps embed an existing hosted Auripath audio experience on a WordPress site.
 
 == Changelog ==
+
+= 0.1.2 =
+* Added a small admin help page with shortcode instructions.
 
 = 0.1.1 =
 * Added production Auripath SDK support.

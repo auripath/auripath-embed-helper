@@ -28,6 +28,10 @@ The public document ID in the shortcode is sent to Auripath so the hosted player
 
 Auripath privacy policy: https://auripath.com/privacy-policy/
 
+## WordPress admin help page
+
+After activation, shortcode instructions are available in WordPress under Settings > Auripath Embed Helper.
+
 ## Shortcodes
 
 Preferred shortcode:

@@ -3,7 +3,7 @@
  * Plugin Name: Auripath Embed Helper
  * Plugin URI: https://auripath.com/integrations/
  * Description: Adds a simple shortcode for embedding Auripath audio experiences on WordPress pages.
- * Version: 0.1.1
+ * Version: 0.1.2
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Auripath
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('AURIPATH_EMBED_HELPER_VERSION', '0.1.1');
+define('AURIPATH_EMBED_HELPER_VERSION', '0.1.2');
 define('AURIPATH_EMBED_HELPER_SCRIPT_URL', 'https://app.auripath.com/wp-content/plugins/audiomagnet-saas/assets/embed/ap.js');
 
 /**
@@ -103,3 +103,69 @@ function auripath_embed_helper_shortcode($atts) {
 
 add_shortcode('auripath', 'auripath_embed_helper_shortcode');
 add_shortcode('auripath_embed', 'auripath_embed_helper_shortcode');
+
+/**
+ * Add a small admin help page.
+ */
+function auripath_embed_helper_admin_menu() {
+    add_options_page(
+        __('Auripath Embed Helper', 'auripath-embed-helper'),
+        __('Auripath Embed Helper', 'auripath-embed-helper'),
+        'manage_options',
+        'auripath-embed-helper',
+        'auripath_embed_helper_admin_page'
+    );
+}
+add_action('admin_menu', 'auripath_embed_helper_admin_menu');
+
+/**
+ * Render the admin help page.
+ */
+function auripath_embed_helper_admin_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    $example_shortcode = '[auripath doc="doc_xxxxxxxxx"]';
+    ?>
+    <div class="wrap">
+        <h1><?php echo esc_html__('Auripath Embed Helper', 'auripath-embed-helper'); ?></h1>
+
+        <p>
+            <?php echo esc_html__('Use this plugin to embed a hosted Auripath audio experience on a WordPress page or post.', 'auripath-embed-helper'); ?>
+        </p>
+
+        <h2><?php echo esc_html__('Shortcode', 'auripath-embed-helper'); ?></h2>
+
+        <p>
+            <?php echo esc_html__('Paste this shortcode into a Shortcode block, page, post or compatible builder field:', 'auripath-embed-helper'); ?>
+        </p>
+
+        <p>
+            <input
+                type="text"
+                readonly
+                class="large-text code"
+                value="<?php echo esc_attr($example_shortcode); ?>"
+                onclick="this.select();"
+            />
+        </p>
+
+        <p>
+            <?php echo esc_html__('Replace doc_xxxxxxxxx with the public document ID from your Auripath account.', 'auripath-embed-helper'); ?>
+        </p>
+
+        <h2><?php echo esc_html__('How it works', 'auripath-embed-helper'); ?></h2>
+
+        <p>
+            <?php echo esc_html__('The plugin loads the hosted Auripath embed script and passes it the public document ID. Auripath then renders the player, lead capture, calls to action and listening analytics from the hosted service.', 'auripath-embed-helper'); ?>
+        </p>
+
+        <p>
+            <a href="https://auripath.com/integrations/" target="_blank" rel="noopener">
+                <?php echo esc_html__('Visit Auripath integrations', 'auripath-embed-helper'); ?>
+            </a>
+        </p>
+    </div>
+    <?php
+}

@@ -3,7 +3,7 @@
  * Plugin Name: Auripath Embed Helper
  * Plugin URI: https://auripath.com/integrations/
  * Description: Adds a simple shortcode for embedding Auripath audio experiences on WordPress pages.
- * Version: 0.1.2
+ * Version: 0.1.3
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Auripath
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('AURIPATH_EMBED_HELPER_VERSION', '0.1.2');
+define('AURIPATH_EMBED_HELPER_VERSION', '0.1.3');
 define('AURIPATH_EMBED_HELPER_SCRIPT_URL', 'https://app.auripath.com/wp-content/plugins/audiomagnet-saas/assets/embed/ap.js');
 
 /**

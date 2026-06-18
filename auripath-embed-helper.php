@@ -3,7 +3,7 @@
  * Plugin Name: Auripath Embed Helper
  * Plugin URI: https://auripath.com/integrations/
  * Description: Adds a simple shortcode for embedding Auripath audio experiences on WordPress pages.
- * Version: 0.1.4
+ * Version: 0.1.5
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Auripath
@@ -17,8 +17,25 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('AURIPATH_EMBED_HELPER_VERSION', '0.1.4');
+define('AURIPATH_EMBED_HELPER_VERSION', '0.1.5');
 define('AURIPATH_EMBED_HELPER_SCRIPT_URL', 'https://app.auripath.com/wp-content/plugins/audiomagnet-saas/assets/embed/ap.js');
+
+/**
+ * Register Auripath embed assets.
+ */
+function auripath_embed_helper_register_assets() {
+    wp_register_script(
+        'auripath-embed-helper-loader',
+        AURIPATH_EMBED_HELPER_SCRIPT_URL,
+        array(),
+        AURIPATH_EMBED_HELPER_VERSION,
+        array(
+            'strategy'  => 'defer',
+            'in_footer' => true,
+        )
+    );
+}
+add_action('wp_enqueue_scripts', 'auripath_embed_helper_register_assets');
 
 /**
  * Render an Auripath embed.
@@ -65,15 +82,13 @@ function auripath_embed_helper_shortcode($atts) {
         return '';
     }
 
+    if (!wp_script_is('auripath-embed-helper-loader', 'registered')) {
+        auripath_embed_helper_register_assets();
+    }
+
     $instance_id = 'auripath-embed-' . wp_generate_uuid4();
 
-    wp_enqueue_script(
-        'auripath-embed-helper-loader',
-        AURIPATH_EMBED_HELPER_SCRIPT_URL,
-        array(),
-        AURIPATH_EMBED_HELPER_VERSION,
-        true
-    );
+    wp_enqueue_script('auripath-embed-helper-loader');
 
     $render_args = array(
         'docId'    => $doc_identifier,
@@ -84,21 +99,22 @@ function auripath_embed_helper_shortcode($atts) {
         $render_args['theme'] = sanitize_key($atts['theme']);
     }
 
-    ob_start();
-    ?>
-    <div
-        id="<?php echo esc_attr($instance_id); ?>"
-        class="auripath-embed-helper"
-        data-auripath-doc="<?php echo esc_attr($doc_identifier); ?>"
-    ></div>
-    <script>
-        window.ap = window.ap || function () {
-            (window.ap.q = window.ap.q || []).push(arguments);
-        };
-        window.ap('render', <?php echo wp_json_encode($render_args); ?>);
-    </script>
-    <?php
-    return ob_get_clean();
+    $inline_script = sprintf(
+        'window.ap=window.ap||function(){(window.ap.q=window.ap.q||[]).push(arguments);};window.ap("render",%s);',
+        wp_json_encode($render_args)
+    );
+
+    wp_add_inline_script(
+        'auripath-embed-helper-loader',
+        $inline_script,
+        'after'
+    );
+
+    return sprintf(
+        '<div id="%1$s" class="auripath-embed-helper" data-auripath-doc="%2$s"></div>',
+        esc_attr($instance_id),
+        esc_attr($doc_identifier)
+    );
 }
 
 add_shortcode('auripath', 'auripath_embed_helper_shortcode');
@@ -147,7 +163,6 @@ function auripath_embed_helper_admin_page() {
                 readonly
                 class="large-text code"
                 value="<?php echo esc_attr($example_shortcode); ?>"
-                onclick="this.select();"
             />
         </p>
 

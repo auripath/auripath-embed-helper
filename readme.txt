@@ -2,9 +2,9 @@
 Contributors: auripath
 Tags: audio, embed, b2b, content, analytics
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,11 +29,11 @@ The `doc` value should be the public Auripath document ID from your Auripath acc
 
 This plugin connects to the hosted Auripath service at `https://app.auripath.com/`.
 
-When a page containing the Auripath shortcode is viewed, the plugin loads the Auripath embed script from the hosted Auripath service. The public document ID in the shortcode is passed to Auripath so the hosted service can return the correct player, lead capture form, calls to action and analytics behaviour for that document.
+When a page containing the Auripath shortcode is viewed, the plugin loads the Auripath embed script from the hosted Auripath service. The public document ID in the shortcode is passed to Auripath so the hosted service can return the correct player, lead capture form, calls to action and analytics behavior for that document.
 
 The plugin itself does not store leads, audio files or analytics data in WordPress.
 
-Auripath privacy policy: https://auripath.com/privacy-policy/
+Auripath privacy policy: https://auripath.com/privacy/
 Auripath terms: https://auripath.com/terms/
 
 == Installation ==
@@ -59,6 +59,10 @@ Yes. The shortcode needs a public Auripath document ID, usually beginning with `
 No. This plugin only helps embed an existing hosted Auripath audio experience on a WordPress site.
 
 == Changelog ==
+
+= 0.1.5 =
+* Replaced plugin-generated raw script output with WordPress script enqueue and inline script APIs.
+* Updated the Auripath privacy policy URL.
 
 = 0.1.4 =
 * Updated Tested up to header for Plugin Check.

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Auripath Embed Helper
- * Plugin URI: https://auripath.com/integrations/
+ * Plugin URI: https://auripath.com/integrations/wordpress/
  * Description: Adds a simple shortcode for embedding Auripath audio experiences on WordPress pages.
  * Version: 0.1.5
  * Requires at least: 6.0

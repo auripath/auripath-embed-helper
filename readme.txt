@@ -93,6 +93,13 @@ Yes. Auripath can help B2B teams track content engagement around PDF-based asset
 
 Yes. You can place the shortcode inside WordPress pages, posts, shortcode blocks or compatible page builder fields.
 
+== Useful Links ==
+
+* Auripath: https://auripath.com/
+* How Auripath Works: https://auripath.com/how-it-works/
+* Auripath Use Cases: https://auripath.com/use-cases/
+* B2B Lead Signal Stack: https://auripath.com/lead-signal-stack/
+
 == Changelog ==
 
 = 0.1.5 =

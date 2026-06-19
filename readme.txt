@@ -93,6 +93,12 @@ Yes. Auripath can help B2B teams track content engagement around PDF-based asset
 
 Yes. You can place the shortcode inside WordPress pages, posts, shortcode blocks or compatible page builder fields.
 
+== Screenshots ==
+
+1. Add an Auripath document ID using a simple shortcode in the WordPress editor.
+2. Track listening behavior, lead capture and CTA clicks in Auripath.
+3. Auripath Embed Helper includes a simple shortcode reference page in WordPress admin.
+
 == Useful Links ==
 
 * Auripath: https://auripath.com/
